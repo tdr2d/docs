@@ -1,10 +1,8 @@
 ---
-title: "Changer la version de PHP de son hébergement web"
-excerpt: "Découvrez comment changer la version de PHP de votre hébergement web OVHcloud"
-updated: 2022-09-19
+title: "Hébergement web - Environnement, version PHP, « .ovhconfig »"
+excerpt: "Découvrez comment modifier l'environnement d'exécution, la version PHP, le pare-feu applicatif, le mode et le fichier « .ovhconfig » d'un hébergement web"
+updated: 2023-08-29
 ---
-
-**Dernière mise à jour le 19/09/2022**
 
 ## Objectif
 
