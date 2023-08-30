@@ -1,14 +1,35 @@
 ---
 title: "Hébergement web - Environnement, version PHP, « .ovhconfig »"
-excerpt: "Découvrez comment modifier l'environnement d'exécution, la version PHP, le pare-feu applicatif, le mode et le fichier « .ovhconfig » d'un hébergement web"
+excerpt: "Découvrez comment modifier l'environnement d'exécution, la version PHP, le pare-feu applicatif, le moteur, le mode et l'« .ovhconfig » d'un hébergement web"
 updated: 2023-08-29
 ---
 
 ## Objectif
 
-Votre [hébergement web OVHcloud](https://www.ovhcloud.com/fr/web-hosting/){.external} permet d’héberger le site internet que vous souhaitez, tant que celui-ci est compatible avec la [configuration de nos infrastructures](https://webhosting-infos.hosting.ovh.net){.external}. En ce sens, vous pouvez être amené à vouloir modifier la version de PHP utilisée par votre hébergement web.
+Les offres d'[hébergement web OVHcloud](https://www.ovhcloud.com/fr/web-hosting/){.external} permettent d’héberger le site web que vous souhaitez, tant que celui-ci est compatible avec la [configuration de nos infrastructures mutualisées](https://webhosting-infos.hosting.ovh.net){.external}.
+Toutefois, sur nos infrastructures mutualisées, vous pouvez modifier les éléments suivants pour votre hébergement web :
 
-**Découvrez comment changer la version de PHP de votre hébergement web OVHcloud.**
+- **l'environnement d'exécution** : ensemble de langages de programmation dans un « versionning » plus ou moins avancé. Le tout permettant d'exécuter correctement les fichiers qui composent votre site web, en adéquation avec vos besoins techniques;
+- **la version de PHP** : PHP est un langage de programmation dynamique utilisé pour réaliser des sites web. En fonction de l'ancienneté de votre site web ou de certaines variables nécessaires à son bon fonctionnement, vous pouvez être amené à changer la version de PHP qu'il utilise;
+- **le moteur d'exécution PHP** : programme permettant d'exécuter des actions sur le serveur selon une méthode donnée. Généralement, on modifie cet élément pour jouer sur la vitesse d'exécution des requêtes générées par les visiteurs de votre site web;
+- **le pare-feu applicatif** : sécurité qui filtre les requêtes entrantes de votre hébergement web;
+- **le mode d'exécution** : permet de gérer le comportement du cache des fichiers statiques de votre site web (des images par exemple) ainsi que le traitement des erreurs PHP.
+
+Ces éléments de configuration sont modifiables de deux manières :
+
+- Depuis votre [espace client OVHcloud](https://www.ovh.com/auth/?action=gotomanager&from=https://www.ovh.com/fr/&ovhSubsidiary=fr);
+- Depuis l'espace de stockage FTP de votre hébergement web OVHcloud à l'aide d'un fichier nommé « .ovhconfig ».
+
+> [!primary]
+>
+> Les fichiers « .ovhconfig » sont des fichiers de configuration serveur et sont automatiquement reconnus comme tel par l'infrastructure d'hébergement mutualisée.
+> Ils sont présents nativement et par défaut à la « racine FTP » de l'espace de stockage FTP de votre hébergement web.
+> Ils contiennent les valeurs des éléments évoqués au dessus.
+>
+
+En résumé, modifier la configuration de votre hébergement web depuis l'espace client OVHcloud ou modifier les valeurs présentes dans le fichier « .ovhconfig » revient à réaliser la même opération.
+
+**Découvrez comment modifier l'environnement d'exécution, la version PHP, le pare-feu applicatif, le moteur, le mode et l'« .ovhconfig » d'un hébergement web.**
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/X31MNMLw064" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
