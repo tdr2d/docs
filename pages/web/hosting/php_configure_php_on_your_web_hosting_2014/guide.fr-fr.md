@@ -12,8 +12,8 @@ Toutefois, sur nos infrastructures mutualisées, vous pouvez modifier les param�
 - [l'environnement d'exécution](#runtime-evironment)
 - [la version de PHP](#php-versions)
 - [le moteur d'exécution PHP](#php-runtime)
-- **le pare-feu applicatif** : sécurité qui filtre les requêtes entrantes de votre hébergement web;
-- **le mode d'exécution** : permet de gérer le comportement du cache des fichiers statiques de votre site web (des images par exemple) ainsi que le traitement des erreurs PHP.
+- [le pare-feu applicatif](#firewall)
+- [le mode d'exécution](#runtime-mod)
 
 Ces paramètres de configuration sont modifiables de deux manières :
 
@@ -137,8 +137,83 @@ Mettez-le ensuite en ligne sur votre [espace de stockage FTP](/pages/web/hosting
 
 Les moteurs d'exécutions PHP sont des programmes permettant d'exécuter des actions sur le serveur web selon une méthode donnée. Généralement, ce paramètre est modifié pour agir sur la vitesse d'exécution des requêtes générées par les visiteurs de votre site web.
 
-Sur les hébergements web OVHcloud, nous proposons **2** moteurs d'exécutions PHP : *php* et *phpcgi*.
+Sur les hébergements web OVHcloud, nous proposons **2** moteurs d'exécutions PHP : *php* (« PHP-FPM ») et *phpcgi*.
 
+Le choix du moteur *php* permet d'activer ou de désactiver l'accélérateur PHP (« PHP-FPM »). Ce dernier a été adapté à notre infrastructure dans le but d'accélérer la vitesse d'exécution des scripts PHP. En comparaison, l'accélérateur PHP (« PHP-FPM ») offre un gain de performance jusqu'à sept fois plus rapide par rapport à l'utilisation du moteur *phpcgi*. 
+
+####  1.4 - Le pare-feu applicatif <a name="firewall"></a>
+
+Un pare-feu est une sécurité qui filtre les requêtes entrantes de votre hébergement web. Sur nos hébergements web, ce paramètre de configuration fonctionne sous la forme d'une option est **activable** ou **désactivable**.
+En effet, vous ne pourrez pas modifier les paramètres de filtrage du pare-feu en lui-même.
+
+Consultez notre guide « [Activation du pare-feu applicatif](/pages/web/hosting/multisites_activating_application_firewall) » pour plus de détails sur le sujet.
+
+> [!warning]
+>
+> Si vous utilisez des modules de paiements, l'activation du pare-feu applicatif peut parfois engendrer des perturbations dans la communication entre le module de paiement et les banques. Dans ce cas, désactiver l'option.
+>
+
+####  1.5 - Les modes d'exécution <a name="runtime-mod"></a>
+ 
+Les modes d'exécution permettent de gérer le comportement du cache des fichiers statiques de votre site web (des images par exemple) ainsi que le traitement des erreurs PHP (généralement utiles quand votre site affiche une page blanche par exemple). 
+
+Il existe **2** modes que vous pouvez activer : *Production* et *Development*
+
+|Mode|Cache des fichiers statiques|Traitement des erreurs PHP|
+|---|---|---|
+|*Production*|Maximise la mise en cache des fichiers statiques sur les navigateurs internet.|Les erreurs PHP n'apparaissent pas sur votre site.|
+|*Development*|Aucun cache n'est appliqué.|Les erreurs PHP apparaissent sur votre site.|
+
+> [!primary]
+>
+> Pour les versions 7.1 et supérieures de PHP, les erreurs apparaitront sur le site, quel que soit le mode utilisé. 
+> 
+
+Maintenant que vous connaissez les différents paramètres modifiables pour votre hébergement web OVHcloud, découvrez les deux méthodes pour modifier ces paramètres.
+
+### 2 - Méthode 1 : Modifier la configuration de l'hébergement web depuis l'espace client OVHcloud <a name="setting-ovh-manager"></a>
+
+> [!warning]
+>
+> Rappel : modifier au moins l'un de ces éléments peut avoir des conséquences sur l'affichage ou le bon fonctionnement de votre site web. **Assurez-vous au préalable que votre site web est compatible avec les changements que vous souhaitez effectuer dans la configuration de votre hébergement web.** Contactez un [prestataire spécialisé](https://partner.ovhcloud.com/fr/directory/) si vous éprouvez des difficultés.
+>
+
+
+#### 2.1 - Accéder à la gestion de la configuration de l'hébergement web
+
+Connectez-vous à votre [espace client OVHcloud](https://www.ovh.com/auth/?action=gotomanager&from=https://www.ovh.com/fr/&ovhSubsidiary=fr){.external} puis rendez-vous dans la partie `Web Cloud`{.action}. Dans la colonne de gauche, cliquez sur `Hébergements`{.action}, puis choisissez l'hébergement web concerné. Assurez-vous d'être bien positionné sur l'onglet
+`Informations générales`{.action}. Sur la droite de la mention `Version PHP Globale`{.action} située quasiment au centre de la page, cliquez sur le bouton `...`{.action} puis sur `Modifier la configuration`{.action}.
+
+![hostingconfiguration](images/change-hosting-configuration-step1.png){.thumbnail}
+
+> [!primary]
+>
+> Si le bouton `Modifier la configuration`{.action} est grisé, il se peut qu'une vérification de la **version PHP globale** soit en cours. Si tel est le cas, un symbole rond de couleur bleue s'affichera à côté de la version, indiquant qu'une vérification est cours. Patientez alors quelques minutes pour que le bouton `Modifier la configuration`{.action} redevienne accessible.
+>
+> Si l'option `Version PHP Globale`{.action} n'apparaît pas dans votre [espace client OVHcloud](https://www.ovh.com/auth/?action=gotomanager&from=https://www.ovh.com/fr/&ovhSubsidiary=fr), vérifiez que fichier *.ovhconfig* existe bien à la racine FTP de votre hébergement mutualisé OVHcloud.
+>
+> Retrouvez toutes les informations concernant le fichier *.ovhconfig* dans la  troisième partie « [Méthode 2 : Modifier la configuration de l'hébergement web depuis le fichier « .ovhconfig »](#setting-ovhconfig) » du présent guide.
+>
+
+#### 2.2 - Modifier la configuration de l'hébergement web
+
+Sur la fenêtre qui apparaît, deux choix possibles. Sélectionnez celui qui correspond à l'action que vous souhaitez réaliser, puis cliquez sur `Suivant`{.action}.
+
+|Choix|Détail|
+|---|---|
+|`Revenir à une configuration précédente`|Après avoir sélectionné cette option, choisissez la configuration à restaurer à côté de `Choix historique`. Cette possibilité peut ne pas être disponible si vous n'avez pas effectué de changement dans le passé.|
+|`Modifier la configuration courante`|Après avoir sélectionné cette option, choisissez les modifications à apporter à la configuration parmi les champs proposés. Si nécessaire, retournez à la première partie « [Description des paramètres de configuration disponibles sur les hébergements web OVHcloud](#all-parameters) » du présent guide.|
+
+> [!primary]
+>
+> Changer l'environnement d'exécution de votre hébergement web réinitialise automatiquement les sessions PHP.
+> 
+
+Dès que vous êtes prêt, cliquez sur `Valider`{.action} pour appliquer la modification. Patientez quelques instants le temps qu'elle se réalise.
+
+![hostingconfiguration](images/change-hosting-configuration-step3.png){.thumbnail}
+
+### 3 - Méthode 2 : Modifier la configuration de l'hébergement web depuis le fichier « .ovhconfig » <a name="setting-ovhconfig"></a>
 
 ## Aller plus loin
 
