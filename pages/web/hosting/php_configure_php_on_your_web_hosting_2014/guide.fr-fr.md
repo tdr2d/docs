@@ -11,7 +11,7 @@ Toutefois, sur nos infrastructures mutualisées, vous pouvez modifier les param�
 
 - [l'environnement d'exécution](#runtime-evironment)
 - [la version de PHP](#php-versions)
-- **le moteur d'exécution PHP** : programme permettant d'exécuter des actions sur le serveur selon une méthode donnée. Généralement, cet élément est modifié pour agir sur la vitesse d'exécution des requêtes générées par les visiteurs de votre site web;
+- [le moteur d'exécution PHP](#php-runtime)
 - **le pare-feu applicatif** : sécurité qui filtre les requêtes entrantes de votre hébergement web;
 - **le mode d'exécution** : permet de gérer le comportement du cache des fichiers statiques de votre site web (des images par exemple) ainsi que le traitement des erreurs PHP.
 
@@ -81,11 +81,6 @@ PHP est un langage de programmation dynamique utilisé pour réaliser des sites 
 
 Plusieurs versions du langage de programmation PHP existent. Les évolutions de versions apportent des correctifs divers, ainsi que l'ajout ou l'arrêt de fonctionnalités. OVHcloud propose les dernières versions majeures de PHP dont vous pouvez retrouver la liste [ici](https://www.ovhcloud.com/fr/web-hosting/uc-programming-language/). 
 
-> [!primary]
->
-> Du fait que certaines fonctionnalités peuvent ne pas être maintenues au fil des nouvelles versions, **assurez-vous, avant d'entamer tout changement, que la nouvelle version de PHP souhaitée est compatible avec votre site internet.**
->
-
 Certaines versions de PHP ne fonctionnent qu'avec certains environnements d'exécution. Vous trouverez ci-après les versions de PHP disponibles sur les hébergements mutualisés OVHcloud et [les environnements d'exécution](#runtime-evironment) compatibles :
 
 |Versions PHP|Environnements d'exécution compatibles|
@@ -94,9 +89,14 @@ Certaines versions de PHP ne fonctionnent qu'avec certains environnements d'exé
 |7.1, 7.2 et 7.3|Stable|
 |7.4, 8.0 et 8.1 (bêta)|stable64|
 
-Même si OVHcloud gère l'installation des dernières versions de PHP sur ses serveurs, il vous revient de vous assurer que votre site web est **toujours à jour** et compatible avec les dernières versions de PHP. Afin de vous en assurer, deux possibilités existent selon le site web que vous utilisez :
+> [!primary]
+>
+> Du fait que certaines fonctionnalités peuvent ne pas être maintenues au fil des nouvelles versions, **assurez-vous, avant d'entamer tout changement, que la nouvelle version de PHP souhaitée est compatible avec votre site internet.**
+>
 
-**Cas n°1 : vous utilisez un site « clés en main » comme un système de gestion de contenu (Content Management System ou CMS)** tel que *WordPress*, *Joomla!*, *PrestaShop* ou *Drupal* : 
+Même si OVHcloud gère l'installation des dernières versions de PHP sur ses serveurs, il vous revient de vous assurer que votre site web est **toujours à jour** et compatible avec les dernières versions de PHP. Pour vous en assurer, deux possibilités existent selon le site web que vous utilisez :
+
+**Cas n°1 : vous utilisez un Content Management System (CMS)** tel que *WordPress*, *Joomla!*, *PrestaShop* ou *Drupal* : 
 
 - Consultez la documentation officielle créée par l'éditeur du CMS que vous utilisez.
 - Prenez note des informations concernant les prérequis techniques nécessaires au fonctionnement de votre CMS, ainsi que la manipulation permettant de le mettre à jour.
@@ -132,6 +132,13 @@ Mettez-le ensuite en ligne sur votre [espace de stockage FTP](/pages/web/hosting
 > La commande permettant de changer la version de PHP dans le fichier « .htaccess » ne permet pas non plus d'utiliser les versions récentes de PHP sur nos infrastructures.
 > Pour cela, vous devrez obligatoirement utiliser le fichier « .ovhconfig ».
 >
+
+####  1.3 - Les moteurs d'exécutions PHP <a name="php-runtime"></a>
+
+Les moteurs d'exécutions PHP sont des programmes permettant d'exécuter des actions sur le serveur web selon une méthode donnée. Généralement, ce paramètre est modifié pour agir sur la vitesse d'exécution des requêtes générées par les visiteurs de votre site web.
+
+Sur les hébergements web OVHcloud, nous proposons **2** moteurs d'exécutions PHP : *php* et *phpcgi*.
+
 
 ## Aller plus loin
 
