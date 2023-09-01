@@ -215,6 +215,143 @@ Dès que vous êtes prêt, cliquez sur `Valider`{.action} pour appliquer la modi
 
 ### 3 - Méthode 2 : Modifier la configuration de l'hébergement web depuis le fichier « .ovhconfig » <a name="setting-ovhconfig"></a>
 
+#### 3.1 - Se connecter à l'espace de stockage FTP de votre hébergement web
+
+Munissez-vous de votre identifiant FTP principal, de son mot de passe, ainsi que de l'adresse du serveur FTP.
+Pour cela, connectez-vous à votre [espace client OVHcloud](https://www.ovh.com/auth/?action=gotomanager&from=https://www.ovh.com/fr/&ovhSubsidiary=fr){.external} puis rendez-vous dans la partie `Web Cloud`{.action}. Dans la colonne de gauche, cliquez sur `Hébergements`{.action} puis sélectionnez l'hébergement concerné. Positionnez-vous enfin sur l'onglet `FTP - SSH`{.action}. Vous y retrouverez les informations vous permettant de vous connecter. 
+
+Concernant le mot de passe de l'utilisateur FTP, reportez-vous aux instructions décrites dans notre documentation [« Modifier le mot de passe d’un utilisateur FTP »](/pages/web/hosting/ftp_change_password) si nécessaire.
+
+![ovhconfig](images/ovhconfig-step1.png){.thumbnail}
+
+#### 3.2 - Récupérer ou créer le fichier « .ovhconfig »
+
+Une fois connecté à votre espace de stockage FTP, vous visualisez l'ensemble des fichiers actuellement hébergés sur ce dernier. Restez positionné sur la racine de votre hébergement (que l'on peut symboliser par un « / »). Vous devriez y trouver le fichier « .ovhconfig ».
+
+![ovhconfig](images/ovhconfig-step2.png){.thumbnail}
+
+Dès lors, deux possibilités :
+
+- **le fichier « .ovhconfig » est présent** : téléchargez-le sur votre propre machine / appareil. Faites-en une copie avant de le modifier. Cette dernière vous permettra de remettre le fichier d'origine si nécessaire.
+- **le fichier « .ovhconfig » est inexistant** : créez-le sur votre propre machine / appareil et nommez-le « .ovhconfig ».
+
+#### 3.3 - Modifier le contenu du fichier « .ovhconfig » <a name="update-ovhconfig"></a>
+
+Une fois en possession du fichier « .ovhconfig », éditez-le. Pour cela, utilisez un logiciel comme un éditeur de texte. Votre fichier « .ovhconfig » doit contenir un code semblable à celui-ci :
+
+```php
+app.engine=php
+app.engine.version=8.0
+
+http.firewall=none
+environment=production
+
+container.image=stable64
+```
+
+> [!success]
+>
+> Si vous venez de créer le fichier « .ovhconfig », copiez le code ci-dessus dans votre fichier puis poursuivez la lecture du présent guide.
+>
+
+Personnalisez les valeurs des variables selon la configuration que vous souhaitez utiliser avec votre hébergement web.
+
+- [le pare-feu applicatif](#firewall)
+- 
+
+|Variables|Détail|
+|---|---|
+|app.engine|Permet de modifier [le moteur PHP](#php-runtime) utilisé par l'hébergement. Renseignez **php** pour activer l'accélérateur PHP-FPM et **phpcgi** pour le désactiver.|
+|app.engine.version|Permet de définir [la version de PHP](#php-versions) utilisée par l'hébergement parmi [celles qu'OVHcloud propose](https://www.ovhcloud.com/fr/web-hosting/uc-programming-language/){.external}. Renseignez la version de votre choix (en adéquation avec l'environnement d'exécution que vous avez choisi d'utiliser).|
+|http.firewall|Permet d'activer ou de désactiver le [firewall fourni avec les hébergements web OVHcloud](https://www.ovhcloud.com/fr/web-hosting/options/){.external}. Renseignez **security** pour l'activer ou **none** pour le désactiver.|
+|environment|Permet de gérer le comportement du cache des fichiers statiques de votre site web ainsi que le traitement des erreurs PHP. Cela correspond au [le mode d'exécution](#runtime-mod). Renseignez **production** pour maximiser la mise en cache et masquer les erreurs PHP ou **development** pour qu'aucun cache ne soit appliqué et que les erreurs PHP s'affichent.|
+|container.image|Permet de modifier [l'environnement d'exécution](#runtime-evironment) utilisé par l'hébergement. Renseignez le l'environnement d'exécution (**legacy**,**stable** ou **stable64**) de votre choix. Si vous choisissez l'environnement d'éxecution **stable64**, vérifiez que votre site est compatible avec l'architecture 64 bits.|
+
+Si besoin, retournez à la première partie « [Description des paramètres de configuration disponibles sur les hébergements web OVHcloud](#all-parameters) » du présent guide.
+
+Si nécessaire, retrouvez ci-dessous la description technique détaillée du fichier « .ovhconfig » :
+
+```php
+; ovhconfig
+;
+; this file must be placed in $HOME/.ovhconfig or in $DOCUMENT_ROOT/.ovhconfig
+
+; __app.engine__
+;
+; values: php (php engine + opcache accelerator)
+; notice: if php, a phpcgi engine will be activated as fallback (if previous engine crash)
+;
+;   php:
+;       IMPORTANT: register_globals and magic_quotes_gpc are off for security
+;       php optiones .htaccess (like php version) are ignored
+;   phpcgi:
+;       IMPORTANT this is a fallback to previous system
+;       in this case __app.engine.version__ will be considerated as AUTO and php version will be old system
+;       (meaning depending .htaccess or .phpX extension)
+;
+app.engine=php
+
+; __app.engine.version__ specify version of your engine
+;
+; for php:
+;   default: 8.0
+; for phpcgi:
+;   this options is ignored (= fallback in AUTO)
+;
+app.engine.version=8.0
+
+; __http.firewall__ used to add application firewall  (filter http requests)
+;
+; values: none | security
+; default: none
+;
+http.firewall=none
+
+; __environment__
+;
+; values: production | development
+;
+;   production:
+;       apache will maximise local cache
+;       mod_expires will grow up TTL of js, css, pdf, images, video, audio
+;       you can override it changing expiration explicitly in your .htaccess
+;       feel free to look on our guide.
+;   development:
+;       no expiration is added, files are not locally in cache,
+;       will speed up tests but decrease performances
+;
+; choosen environment will also be available in your variable ENVIRONMENT unix env
+;
+; default: production
+;
+environment=production
+
+; __container.image__
+;
+; values: legacy | stable | stable64
+;
+container.image=stable64
+```
+
+#### 3.4 - télécharger le fichier « .ovhconfig » sur l'espace de stockage
+
+Une fois le fichier « .ovhconfig » modifié, téléchargez-le sur votre espace de stockage FTP. Pour cela, reconnectez-vous à votre espace de stockage FTP et positionnez-vous à la racine votre espace de stockage FTP (que l'on peut symboliser par un « / »). Chargez le fichier « .ovhconfig » que vous venez de modifier dans votre espace de stockage FTP. Si le fichier existe déjà, remplacez-le.
+
+### Utiliser de manière avancée les fichiers « .ovhconfig »
+
+Si vous utilisez votre hébergement web pour y héberger plusieurs sites web (en *multisites*), diverses raisons peuvent vous amener à vouloir bénéficier d'une version de PHP différente pour certains de vos *multisites*.
+
+Pour cela, créez un fichier « .ovhconfig » contenant la version de PHP souhaitée pour le ou les *multisites* concernés. Aidez-vous des manipulations décrites dans la partie « [3.3 - Modifier le contenu du fichier « .ovhconfig »](#update-ovhconfig) » du présent guide si nécessaire. Lorsque vous téléchargerez le fichier « .ovhconfig » sur votre espace de stockage FTP, faites-le dans le dossier racine où se trouve les fichiers qui composent le site web "*multisites*" concerné. Retrouvez le dossier racine de vos *multisites* depuis votre [espace client OVHcloud](https://www.ovh.com/auth/?action=gotomanager&from=https://www.ovh.com/fr/&ovhSubsidiary=fr) dans l'onglet `Multisite`{.action} de l'hébergement concerné.
+
+Consultez notre guide « [Configurer un multisite sur votre hébergement web](/pages/web/hosting/multisites_configure_multisite) » si besoin.
+
+> [!warning]
+>
+> **Il n'est pas possible de spécifier un second [environnement d'exécution](#runtime-evironment)** sur un même hébergement web. Seul celui renseigné dans le fichier « .ovhconfig » se trouvant à la racine de votre espace de stockage FTP est pris en compte.
+> 
+
+![ovhconfig](images/ovhconfig-step3.png){.thumbnail}
+
 ## Aller plus loin
 
 [Se connecter à l’espace de stockage de son hébergement Web](/pages/web/hosting/ftp_connection){.external}
