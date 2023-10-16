@@ -83,13 +83,6 @@
     line-height: 25px;
     color:#000;
 }
-
-/******************/
-
-.flex-col {
-    display:flex;
-    flex-direction:column
-}
 </style>
 
 ## Welcome to the Data Platform documentation portal !
