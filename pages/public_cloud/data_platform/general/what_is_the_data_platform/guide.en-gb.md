@@ -101,6 +101,23 @@ By using the Data Platform, you can focus on building software products instead 
 
 ![Schema Data Platform](images/schema_data_platform.png){.thumbnail}
 
+### Platform design philosophy
+
+The Data Platform enables organizations (whole companies, business units, departments, or individuals) to create and deploy robust and scalable cloud-native AI applications while leveraging the latest cloud technologies, architectures and software.
+
+When we set out to create the Data Platform, we followed a simple design philosophy: **to offer an elegant solution that enables users to take on any data challenge and accelerate the application development cycle**. Following this inspiration, we designed a platform that hides technical complexities, and removes the need to make uncertain technological decisions or bend over backward to make them work, through 4 simple levels of automation:
+
+![Platform design philosophy](images/philosophy.png){.thumbnail}
+
+When working with the Data Platform, organizations create their own personal environments called Projects. Projects host all your data processes, models, algorithms and web applications. The physical data, in turn, is stored in a storage engine.
+
+> [!primary]
+>
+>Access to the Projects is usually shared collaboratively, following **user access levels** defined by your organization. For example, a first group of users can be working on data access and transformation, another on the AI models, and a third on the web application interface.
+>
+
+A Project contains **all the components you need to manage your data's life cycle**, processes and rules and user access rights to make your data Projects a success. All these components are included in the illustration below. You can click on a component to learn more about it, or simply follow the guide’s logical flow, which will help you use the Data Platform in the most helpful way.
+
 ### What is an AI Application ?
 
 So, what is an AI Application, you might ask? At Data Platform, we consider an *AI Application* to be any application that uses data for analytics, dashboarding, alerting, real-time automation, or to gain business insight using artificial intelligence or Machine Learning predictive models.
@@ -112,7 +129,7 @@ The data used by an AI Application can come from a variety of sources, including
 We’re excited to have you on board ! There are four sections in this documentation that you can browse to discover the Data Platform, from the most basic to the more advanced. Anyone can use the Data Platform, from non-technical professionals to technical developers.
 
 <a class="landing-link" href="/pages/public_cloud/data_platform/getting-started">
-   <img data-no-zoom="" src="images/pict1.png" alt="Picto1">
+   <img src="images/pict1.png" alt="Picto1">
    <div class="text">
       <h2>GETTING STARTED</h2>
       <p>You’d like to get up and running as quickly as possible? No problem, we’ve got you covered! Check out this awesome Getting Started tutorial, which will help you build a Project using sample datasets.</p>
@@ -120,7 +137,7 @@ We’re excited to have you on board ! There are four sections in this documenta
 </a>
 
 <a class="landing-link" href="/pages/public_cloud/data_platform/getting-further">
-   <img data-no-zoom="" src="images/pict2.png" alt="Picto2">
+   <img src="images/pict2.png" alt="Picto2">
    <div class="text">
       <h2>GETTING FURTHER</h2>
       <p>You can't get enough of the Getting Started guide and want to see hands-on tutorials for more advanced use cases? Check out our Getting Further guide series!</p>
@@ -128,7 +145,7 @@ We’re excited to have you on board ! There are four sections in this documenta
 </a>
 
 <a class="landing-link" href="/pages/public_cloud/data_platform/product">
-   <img data-no-zoom="" src="images/pict3.png" alt="Picto3">
+   <img src="images/pict3.png" alt="Picto3">
    <div class="text">
       <h2>PLATFORM DOCUMENTATION</h2>
       <p>Starting out with Data Platform? Still unsure of what’s called what and figuring out how every feature works? This is for you.</p>
@@ -136,7 +153,7 @@ We’re excited to have you on board ! There are four sections in this documenta
 </a>
 
 <a class="landing-link" href="/pages/public_cloud/data_platform/technical">
-   <img data-no-zoom="" src="images/pict4.png" alt="Picto4">
+   <img src="images/pict4.png" alt="Picto4">
    <div class="text">
       <h2>DEVELOPER DOCUMENTATION</h2>
       <p>You’re an advanced user and are exploring what’s under the hood, check out our component’s API Reference and SDK functions.</p>
@@ -149,17 +166,17 @@ Looking for more information about the platform? At Data Platform we’re all ab
 
 <div class="landing-blocks">
     <a class="landing-block" href="#">
-        <div class="img"><img data-no-zoom="" src="images/roadmap.png" alt="roadmap" width="25%"></div>
+        <div class="img"><img src="images/roadmap.png" alt="roadmap" width="25%"></div>
         <h3>Roadmap</h3>
         <p>Help us prioritize on the next sweet feature by sharing your feedback on product suggestions.</p>
     </a>
     <a class="landing-block" href="#">
-        <div class="img"><img data-no-zoom="" src="images/changelog.png" alt="changelog" width="25%"></div>
+        <div class="img"><img src="images/changelog.png" alt="changelog" width="25%"></div>
         <h3>Changelog</h3>
         <p>Check out the latest product’s new feature releases, bug fixes and updates every Thursday.</p>
     </a>
-    <a class="landing-block" href="#">
-        <div class="img"><img data-no-zoom="" src="images/status.png" alt="Picto2" width="25%"></div>
+    <a class="landing-block" href="https://public-cloud.status-ovhcloud.com/">
+        <div class="img"><img src="images/status.png" alt="status" width="25%"></div>
         <h3>Status</h3>
         <p>Watch out for all ongoing maintenance, downtimes or service interruptions on our clusters.</p>
     </a>
