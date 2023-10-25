@@ -10,7 +10,7 @@ Internet Protocol version 6 (IPv6) is the latest version of Internet Protocol (I
 
 Each Public Cloud instance is delivered with an IPv4 address and an IPv6 address.
 
-By default, only the IPv4 address is configured.
+By default, only the IPv4 address is configured. However, on newer distributions, it is possible that the IPv6 is already configured when the service is delivered.
 
 **This guide will show you how to configure an IPv6 address on a Public Cloud instance.**
 
@@ -72,7 +72,7 @@ All the information you need is in the **Networks** section.
 
 <br>First of all, connect to your instance via SSH.
 
-#### On Debian
+#### On Debian (excluding Debian 12)
 
 If we assume that your interface is eth0, the configuration should look like this:
 
@@ -100,7 +100,7 @@ pre-down /sbin/ip -6 route del default via 2001:41d0:xxx:xxxx::111 dev eth0
 pre-down /sbin/ip -6 route del 2001:41d0:xxx:xxxx::111 dev eth0
 ```
 
-#### On Ubuntu
+#### On Ubuntu (20.04 -23.04) and Debian 12
 
 The network configuration files are located in the `/etc/netplan/` directory. First, create a copy of the IPv6 configuration file:
 
