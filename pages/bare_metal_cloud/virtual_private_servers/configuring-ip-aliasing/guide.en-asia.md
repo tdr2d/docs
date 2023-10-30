@@ -45,7 +45,7 @@ Concerning different distribution releases, please note that the proper procedur
 |NETWORK_INTERFACE|The name of the network interface|*eth0*, *ens3*|
 |ID|ID of the IP alias, starting with *0* (depending on the number of additional IPs there are to configure)|*0*, *1*|
 
-As an example, we will use 123.123.123.123/32 as the IP block, with eth0 and ens3 as the network interfaces. We will also use “nano” as the editing tool.
+As an example, we will use 169.254.10.254/32 as the IP block, with eth0 and ens3 as the network interfaces. We will also use “nano” as the editing tool.
 
 ### Debian 10/11
 
@@ -212,8 +212,8 @@ If we run `ip a`, we can see the IP is configured on the main interface with vir
     inet6 ::1/128 scope host
        valid_lft forever preferred_lft forever
 2: ens3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
-    link/ether fa:16:3e:a7:13:7d brd ff:ff:ff:ff:ff:ff
-    inet 158.xx.xx.xx/32 scope global dynamic ens3
+    link/ether fb:17:3a:a8:15:7c brd ff:ff:ff:ff:ff:ff
+    inet 123.123.123.123/32 scope global dynamic ens3
        valid_lft 86179sec preferred_lft 86179sec
     inet 169.254.10.254/32 scope global ens3:0
        valid_lft forever preferred_lft forever
@@ -312,9 +312,9 @@ Example:
 ```bash
 DEVICE=eth0:0
 BOOTPROTO=static
-IPADDR=123.123.123.123
+IPADDR=169.254.10.254
 NETMASK=255.255.255.255
-BROADCAST=123.123.123.123
+BROADCAST=169.254.10.254
 ONBOOT=yes
 ```
 

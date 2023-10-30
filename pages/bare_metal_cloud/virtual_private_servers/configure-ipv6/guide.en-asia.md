@@ -107,6 +107,11 @@ ip -6 route add default via IPV6_GATEWAY dev eth0
 > Before modifying a configuration file, always create a backup of the original.
 >
 
+> [!primary]
+> 
+> Please note that with some of the recent distributions we offer, the IPV6 is automatically configured when you install a server. In this case, you don't need to take any action.
+>
+
 There are two ways to configure your network depending on the operating system installed on your server:
 
 - **for Debian 11 and earlier, Ubuntu 16.04 and earlier**: use the [method based on the *interfaces* files](#interfaces)
