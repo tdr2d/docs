@@ -45,11 +45,15 @@ Concerning different distribution releases, please note that the proper procedur
 |NETWORK_INTERFACE|The name of the network interface|*eth0*, *ens3*|
 |ID|ID of the IP alias, starting with *0* (depending on the number of additional IPs there are to configure)|*0*, *1*|
 
-For example purposes we'll be using an IP block of 123.123.123.123/32 and eth0 and ens3 as network interfaces. We will also be using `nano` as our editing tool.
+As an example, we will use 123.123.123.123/32 as the IP block, with eth0 and ens3 as the network interfaces. We will also use “nano” as the editing tool.
 
 ### Debian 10/11
 
 #### Step 1: Disable automatic network configuration
+
+The main configuration file is located in `/etc/network/interfaces.d/`. In this example it is called "ifcfg-eth0".
+
+Here, the Additional IPs are configured directly in the main configuration file. This is done by creating "virtual interfaces or ethernet aliases" (example, eth0:0, eth0:1 etc...).
 
 Open the following file path with a text editor:
 
@@ -85,7 +89,14 @@ address ADDITIONAL_IP
 netmask 255.255.255.255
 ```
 
-Configuration example: 
+For example, if we want to configure IP block 169.254.10.254/32 with network interface eth0, we have the following:
+
+```bash
+auto eth0:0
+iface eth0:0 inet static
+address 169.254.10.254
+netmask 255.255.255.255
+```
 
 #### Step 3: Restart the interface
 
@@ -127,9 +138,9 @@ Open the network configuration file for editing with the following command:
 sudo nano /etc/netplan/50-cloud-init.yaml
 ```
 
-As Netplan does not support virtual interfaces (for example ens3:0, ens3:1), multiple addresses can be assigned to a single network interface.
+As Netplan does not support virtual interfaces or ethernet aliases (for example ens3:0, ens3:1), all Additional IPs are configured on a single network interface.
 
-Please note that with the recent distributions, the IPV6 is automatically configured on your service. Do not modify the existing lines in the configuration file, simply replace ADDITIONAL_IP with your own values.
+Please note that with the recent distributions, it is possible that the IPV6 is automatically configured on your service. Do not modify the existing lines in the configuration file, simply replace ADDITIONAL_IP with your own values.
 
 ```yaml
 network:
@@ -179,19 +190,19 @@ Repeat this procedure for each Additional IP address.
 
 #### Assign an Additional IP temporarily
 
-It is possible to add an additionaly IP temporarily, however, note that the configuration will be lost when the server is rebooted. This process also allows you to label the IP with an virtual alias interface if you wish to. Simply replace `ADDITIONAL_IP`, `NETWORK_INTERFACE` and `NETWORK_INTERFACE:ID` with your own values.
+It is possible to asign an Additional IP temporarily, however, note that the configuration will be lost when the server is rebooted. This process also allows you to label the IP with a virtual interface, even if the IP is configured on the main network interface. Simply replace `ADDITIONAL_IP`, `NETWORK_INTERFACE` and `NETWORK_INTERFACE:ID` with your own values.
 
 ```bash
 sudo ip address add ADDITIONAL_IP/32 dev NETWORK_INTERFACE label NETWORK_INTERFACE:ID
 ```
 
-For example, if we want to temporarily assign IP block `123.123.123.123/32` to our server with network interface **ens3**:
+For example, if we want to temporarily assign IP block `169.254.10.254/32` to our server with network interface **ens3**:
 
 ```bash
-sudo ip address add 123.123.123.123/32 dev ens3 label ens3:0
+sudo ip address add 169.254.10.254/32 dev ens3 label ens3:0
 ```
 
-If we run `ip a`, we can see the IP is configured on the main interface with virtual alias **ens3:0**:
+If we run `ip a`, we can see the IP is configured on the main interface with virtual interface **ens3:0**:
 
 ```bash
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
@@ -204,11 +215,7 @@ If we run `ip a`, we can see the IP is configured on the main interface with vir
     link/ether fa:16:3e:a7:13:7d brd ff:ff:ff:ff:ff:ff
     inet 158.xx.xx.xx/32 scope global dynamic ens3
        valid_lft 86179sec preferred_lft 86179sec
-    inet 123.123.123.123/32 scope global ens3:0
-       valid_lft forever preferred_lft forever
-    inet6 2607:xxxx:xxx:xxxx::82c/56 scope global
-       valid_lft forever preferred_lft forever
-    inet6 fxxx::fxxxx:3xx:fxxx:xxxx/64 scope link
+    inet 169.254.10.254/32 scope global ens3:0
        valid_lft forever preferred_lft forever
 ```
 
@@ -265,9 +272,9 @@ Open the command prompt (cmd) and enter `ipconfig`. The configuration should now
 ### cPanel (CentOS 7) / Red Hat derivatives
 
 The main configuration file is located in `/etc/sysconfig/network-scripts/`. In this example it is called "ifcfg-eth0". Before making changes, verify the actual file name in this folder. 
-As the configuration of additional IPs is not directly made in the main configuration file, we have to create an "virtual interfaces or ethernet alias". 
+Since the configuration of additional IPs is not made within the main configuration file, we have to create a new configuration file each assitional IP with "virtual interfaces or ethernet alias". 
 
-To achieve this, we simply add a consecutive number to the interface name, starting with a value of 0 for the first alias. In our case, our first alias for eth0 will be eth0:0.
+To achieve this, we simply add a consecutive number to the interface name, starting with a value of 0 for the first alias. In our case, our first alias for eth0 is eth0:0.
 
 #### Step 1: Edit the network configuration file
 
