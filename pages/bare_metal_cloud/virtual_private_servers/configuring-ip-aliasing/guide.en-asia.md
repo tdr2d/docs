@@ -53,7 +53,7 @@ As an example, we will use 169.254.10.254/32 as the IP block, with eth0 and ens3
 
 The main configuration file is located in `/etc/network/interfaces.d/`. In this example it is called "ifcfg-eth0".
 
-Here, the Additional IPs are configured directly in the main configuration file. This is done by creating "virtual interfaces or ethernet aliases" (example, eth0:0, eth0:1 etc...).
+In this environment, Additional IPs are configured by creating "virtual interfaces or ethernet aliases" (example, eth0:0, eth0:1 etc...).
 
 Open the following file path with a text editor:
 
@@ -89,7 +89,7 @@ address ADDITIONAL_IP
 netmask 255.255.255.255
 ```
 
-For example, if we want to configure IP block 169.254.10.254/32 with network interface eth0, we have the following:
+For example, to configure IP block 169.254.10.254/32 with a network interface "eth0", we have the following:
 
 ```bash
 auto eth0:0
@@ -138,9 +138,9 @@ Open the network configuration file for editing with the following command:
 sudo nano /etc/netplan/50-cloud-init.yaml
 ```
 
-As Netplan does not support virtual interfaces or ethernet aliases (for example ens3:0, ens3:1), all Additional IPs are configured on a single network interface.
+Netplan does not support virtual interfaces or ethernet aliases (for example ens3:0, ens3:1), so all Additional IPs are configured on a single network interface.
 
-Please note that with the recent distributions, it is possible that the IPV6 is automatically configured on your service. Do not modify the existing lines in the configuration file, simply replace ADDITIONAL_IP with your own values.
+Do not modify the existing lines in the configuration file, simply replace ADDITIONAL_IP with your own values.
 
 ```yaml
 network:
@@ -190,7 +190,9 @@ Repeat this procedure for each Additional IP address.
 
 #### Assign an Additional IP temporarily
 
-It is possible to asign an Additional IP temporarily, however, note that the configuration will be lost when the server is rebooted. This process also allows you to label the IP with a virtual interface, even if the IP is configured on the main network interface. Simply replace `ADDITIONAL_IP`, `NETWORK_INTERFACE` and `NETWORK_INTERFACE:ID` with your own values.
+It is possible to asign an Additional IP temporarily, however, note that the configuration will be lost when the server is rebooted. This process also allows you to label the IP with a virtual interface.
+
+Simply replace `ADDITIONAL_IP`, `NETWORK_INTERFACE` and `NETWORK_INTERFACE:ID` with your own values.
 
 ```bash
 sudo ip address add ADDITIONAL_IP/32 dev NETWORK_INTERFACE label NETWORK_INTERFACE:ID
@@ -219,7 +221,7 @@ If we run `ip a`, we can see the IP is configured on the main interface with vir
        valid_lft forever preferred_lft forever
 ```
 
-### Windows Server 2016
+### Windows Server 2016 and later
 
 #### Step 1: Verify the network configuration
 
@@ -272,9 +274,9 @@ Open the command prompt (cmd) and enter `ipconfig`. The configuration should now
 ### cPanel (CentOS 7) / Red Hat derivatives
 
 The main configuration file is located in `/etc/sysconfig/network-scripts/`. In this example it is called "ifcfg-eth0". Before making changes, verify the actual file name in this folder. 
-Since the configuration of additional IPs is not made within the main configuration file, we have to create a new configuration file each assitional IP with "virtual interfaces or ethernet alias". 
+In this environment, we create a configuration file with "virtual interfaces or ethernet aliases" for each Additional IP to be configured.
 
-To achieve this, we simply add a consecutive number to the interface name, starting with a value of 0 for the first alias. In our case, our first alias for eth0 is eth0:0.
+To achieve this, we simply add a consecutive number to the interface name, starting with a value of 0 for the first alias. For example, for network a interface named "eth0" the first alias is "eth0:0".
 
 #### Step 1: Edit the network configuration file
 

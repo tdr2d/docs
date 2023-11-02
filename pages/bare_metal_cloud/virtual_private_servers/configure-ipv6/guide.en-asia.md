@@ -26,6 +26,11 @@ IPv6 is the latest version of the *Internet Protocol*. Each OVHcloud VPS server 
 
 ## Instructions
 
+> [!warning]
+>
+> Please note that on recent versions of Linux operating systems, the IPv6 address is configured by default on Public Cloud instances. Be sure to check your OS configuration file before making any changes.
+>
+
 Configuring IPv6 on your VPS is done in multiple steps. At several points in the process you will be prompted to enter commands or to customise configuration files of your server.
 
 Please take note of the following terminology that will be used in code examples and instructions of the guide sections below:
@@ -105,11 +110,6 @@ ip -6 route add default via IPV6_GATEWAY dev eth0
 > [!warning]
 >
 > Before modifying a configuration file, always create a backup of the original.
->
-
-> [!primary]
-> 
-> Please note that with some of the recent distributions we offer, the IPV6 is automatically configured when you install a server. In this case, you don't need to take any action.
 >
 
 There are two ways to configure your network depending on the operating system installed on your server:
