@@ -255,7 +255,7 @@ network:
                   scope: link
 ```
 
-### Ubuntu 21.10 and 22.04, Debian 12
+### Ubuntu (22.04 - 23.10) and Debian 12
 
 The configuration file should look like the example below:
 
