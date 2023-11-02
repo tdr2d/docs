@@ -8,9 +8,7 @@ updated: 2022-11-15
 
 Internet Protocol version 6 (IPv6) is the latest version of Internet Protocol (IP). It is designed to resolve the long-anticipated exhaustion of IPv4 addresses, by using addresses made up of 128-bits rather than the standard 32-bits of IPv4.
 
-Each Public Cloud instance is delivered with an IPv4 address and an IPv6 address.
-
-By default, only the IPv4 address is configured. However, on newer distributions, it is possible that the IPv6 is already configured when the service is delivered.
+Each Public Cloud instance is delivered with an IPv4 address and an IPv6 address. 
 
 **This guide will show you how to configure an IPv6 address on a Public Cloud instance.**
 
@@ -29,7 +27,6 @@ By default, only the IPv4 address is configured. However, on newer distributions
 ## Instructions
 
 > [!warning]
->
 > Please note that on recent versions of Linux operating systems, the IPv6 address is configured by default on Public Cloud instances. Be sure to check your OS configuration file before making any changes.
 >
 
