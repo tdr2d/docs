@@ -128,13 +128,14 @@ The data used by an AI Application can come from a variety of sources, including
 
 We’re excited to have you on board ! There are four sections in this documentation that you can browse to discover the Data Platform, from the most basic to the more advanced. Anyone can use the Data Platform, from non-technical professionals to technical developers.
 
-<a class="landing-link" href="/pages/public_cloud/data_platform/getting-started">
+<a class="landing-link" href="/pages/public_cloud/data_platform/general/getting_started">
    <img src="images/pict1.png" alt="Picto1">
    <div class="text">
       <h2>GETTING STARTED</h2>
       <p>You’d like to get up and running as quickly as possible? No problem, we’ve got you covered! Check out this awesome Getting Started tutorial, which will help you build a Project using sample datasets.</p>
    </div>
 </a>
+
 
 <a class="landing-link" href="/pages/public_cloud/data_platform/getting-further">
    <img src="images/pict2.png" alt="Picto2">
@@ -160,17 +161,18 @@ We’re excited to have you on board ! There are four sections in this documenta
    </div>
 </a>
 
+
 ### Additional Resources
 
 Looking for more information about the platform? At Data Platform we’re all about giving as much information as possible.
 
 <div class="landing-blocks">
-    <a class="landing-block" href="#">
+    <a class="landing-block" href="https://hq-fp.dataintegration.ovh.net/#/features">
         <div class="img"><img src="images/roadmap.png" alt="roadmap" width="25%"></div>
         <h3>Roadmap</h3>
         <p>Help us prioritize on the next sweet feature by sharing your feedback on product suggestions.</p>
     </a>
-    <a class="landing-block" href="#">
+    <a class="landing-block" href="https://github.com/orgs/ovh/projects/16/views/6?sliceBy%5Bvalue%5D=Data+Platform">
         <div class="img"><img src="images/changelog.png" alt="changelog" width="25%"></div>
         <h3>Changelog</h3>
         <p>Check out the latest product’s new feature releases, bug fixes and updates every Thursday.</p>
