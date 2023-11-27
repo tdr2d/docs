@@ -78,7 +78,8 @@ updated: 2023-11-01
    text-decoration:none !important;
 }
 .block-step p {
-   margin: -30px 0 15px 
+/*   margin: -30px 0 15px  !important;*/
+}
 </style>
 
 ## Build your analytics app from scratch on Data Platform
